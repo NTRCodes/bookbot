@@ -11,7 +11,7 @@ def letter_count(word_list):
     letter_map = {}
     for word in word_list:
         # filter all punction from each word
-        letters = [letter for letter in [*word.lower()] if letter not in punctuations]
+        letters = [letter for letter in [*word.lower()] if letter.isalpha()]
         for letter in letters:
             if letter in letter_map:
                 letter_map[letter] += 1
@@ -24,5 +24,7 @@ with open(wsl_path) as f:
    file_contents = f.read() # get text as a string
    n_words = word_count(file_contents.split())
    n_letters = letter_count(file_contents.split())
-   print(f"Word count: {n_words}")
-   print(f"Letter map: {n_letters}")
+   print(f"*** Begin Report of: {wsl_path} ***\n")
+   print(f"There are {n_words} words in the document\n")
+   for letter in n_letters:
+    print(f"The '{letter}' character was found {n_letters[letter]} times")
